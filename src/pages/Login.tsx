@@ -13,12 +13,14 @@ const Login: React.FC = () => {
             <IonContent className="ion-padding" color={"light"}>
                 <IonCard>
                     <IonCardContent>
-                        <form onSubmit={"RequestLogin()"}>
+                        
+                        <form>
                             <IonInput fill='outline' labelPlacement='floating' label='Email' type='email'></IonInput>
                             <IonInput className="ion-margin-top" fill='outline' labelPlacement='floating' label='Password' type='password'></IonInput>
-                            <IonButton className='ion-margin-top' type='submit'>Login</IonButton>
-                            <IonButton routerLink='/registeruser' className='ion-margin-top' type='button' color={"secondary"}>Register New User</IonButton>
-                            <IonButton routerLink='/expensemanage' className='ion-margin-top' type='button' color={"secondary"}>Manage Expense</IonButton>
+                            <IonButton expand="block" className='ion-margin-top' type='submit'>Login</IonButton>
+                            <IonButton expand="block" routerLink='/registeruser' className='ion-margin-top' type='button' color={"secondary"}>Register New User</IonButton>
+                            <IonButton expand="block" routerLink='/addexpense' className='ion-margin-top' type='button' color={"secondary"}>Add Expense</IonButton>
+                            <IonButton expand="block" routerLink='/viewexpenses' className='ion-margin-top' type='button' color={"secondary"}>View Expenses</IonButton>
                         </form>
                     </IonCardContent>
                 </IonCard>                

@@ -12,7 +12,7 @@ const NewExpense: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <form onSubmit={"AddNewExpense()"}>
+                <form>
                 <IonInput fill='outline' labelPlacement='floating' label='Expense Name' type='text' required></IonInput>
                 <IonTextarea aria-expanded className="ion-margin-top" fill='outline' labelPlacement='floating' label='Description' required></IonTextarea>
                 <IonSelect className="ion-margin-top" fill='outline' labelPlacement='floating' label='Type'>
@@ -21,7 +21,7 @@ const NewExpense: React.FC = () => {
                     <IonSelectOption value={"type3"}>Loan Repayment</IonSelectOption>
                 </IonSelect>
                 <IonInput className="ion-margin-top" fill='outline' labelPlacement='floating' label='Amount' type='number' required></IonInput>
-                <IonInput className="ion-margin-top" fill='outline' labelPlacement='floating' label='Recipt' type='file'></IonInput>
+                <IonInput className="ion-margin-top" fill='outline' labelPlacement='floating' label='Recipt' type='text'></IonInput>
                 <IonButton expand="block" className='ion-margin-top' type='submit'>Add</IonButton>
                 <IonButton expand="block" className='ion-margin-top' type='reset'>Clear</IonButton>
                 <IonButton expand="block" routerLink='/expensemanage' className='ion-margin-top' type='button' color={"secondary"}>Add New Expense</IonButton>

@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-//import Home from './pages/Home';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,38 +33,88 @@ import '@ionic/react/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 import Login from './pages/Login';
-import RegisterUser from './pages/RegisterUser';
+import UploadBill from './pages/UploadBill';
 import NewExpense from './pages/NewExpense';
+import AddExpense from './pages/AddExpense'
+import ViewExpense from './pages/ViewExpense';
+import Home from './pages/Home';
 
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  /*<IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>*/
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route component={RegisterUser} path={"/registeruser"}>
-          
-        </Route>
-        <Route component={NewExpense} path={"/expensemanage"}></Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+/*const App: React.FC = () => {
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/AddExpense">
+            <AddExpense />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/AddExpense" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};*/
+
+const App: React.FC = () => {
+//const App: React.FC = () => (
+  return (
+    /*<IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/sqlitedemo">
+            <Redirect to="/SQLiteDemo" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>*/
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route component={UploadBill} path={"/registeruser"}>
+            <UploadBill/>
+          </Route>
+          <Route component={NewExpense} path={"/expensemanage"}>
+            <NewExpense/>
+          </Route>
+          <Route component={AddExpense} path={"/addexpense"}>
+            <AddExpense/>
+          </Route>
+          <Route component={ViewExpense} path={"/viewexpenses"}>
+            <ViewExpense/>
+          </Route>
+          <Route component={UploadBill} path={"/uploadbill"}>
+            <UploadBill/>
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+    /*<IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/">
+            <SQLiteDemo />
+          </Route>
+          <Route component={SQLiteDemo} path={"/sqlitedemo"}>
+            
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>*/
+  );
+}
 
 export default App;

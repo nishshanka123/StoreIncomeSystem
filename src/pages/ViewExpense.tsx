@@ -13,8 +13,13 @@ import {
     IonTextarea,
     IonFooter,
     IonImg,
-    IonCard
+    IonCard,
+    IonGrid,
+    IonCol,
+    IonIcon,
+    IonButtons
 } from "@ionic/react";
+import {cogSharp, hammerOutline, trash, trashBinOutline} from 'ionicons/icons';
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { SQLiteDBConnection } from "@capacitor-community/sqlite";
@@ -22,7 +27,7 @@ import useSQLiteDB from "../composables/useSQLiteDB";
 import useConfirmationAlert from "../composables/useConfirmationAlert";
 
 type SQLData = {
-    ref: string;
+    reference: string;
     reason: string;
     type: string;
     amount: number;
@@ -90,11 +95,10 @@ const ViewExpense: React.FC = () => {
             // query db
             performSQLAction(async (db: SQLiteDBConnection | undefined) => {
                 const respSelect = await db?.query(`SELECT * FROM expense`);
-                //setItems(respSelect?.values);
                 setDBdata(respSelect?.values);
-                console.log("------values: ", respSelect?.values);
-                console.log("------response:", respSelect);
-                console.log("------Data: ", DBdata);
+                //console.log("------values: ", respSelect?.values);
+                //console.log("------response:", respSelect);
+                //console.log("------Data: ", DBdata);
             });
         } catch (error) {
             alert((error as Error).message);
@@ -109,16 +113,16 @@ const ViewExpense: React.FC = () => {
         });
       };
     
-      const deleteItem = async (itemId: string) => {
+      const deleteItem = async (refNo: string) => {
         try {
           // add test record to db
           performSQLAction(
             async (db: SQLiteDBConnection | undefined) => {
-              await db?.query(`DELETE FROM test WHERE id=?;`, [itemId]);
+              await db?.query(`DELETE FROM expense WHERE reference=?;`, [refNo]);
     
               // update ui
               const respSelect = await db?.query(`SELECT * FROM expense;`);
-              setItems(respSelect?.values);
+              setDBdata(respSelect?.values);
             },
             async () => {
               setInputName("");
@@ -132,33 +136,61 @@ const ViewExpense: React.FC = () => {
       const doEditItem = (item: SQLData | undefined) => {
         if (item) {
           setEditItem(item);
-          setInputName(item.ref);
+          setInputName(item.reference);
         } else {
           setEditItem(undefined);
           setInputName("");
         }
       };
 
-
+    //console.log("test------Data: ", DBdata);
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
+                <IonToolbar color={"secondary"}>
                     <IonTitle>View Expenses</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <h3>THE SQLITE DATA</h3>
+                <h3>Store Expenses</h3>
+                <table>
+                <thead>
+                  <tr>
+                    <th><center>Ref No</center></th>
+                    <th><center>Reason</center></th>
+                    <th><center>Type</center></th>
+                    <th><center>Amount</center></th>
+                    <th align="center"><center>Action</center></th>
+                  </tr>
+                </thead>
+                <tbody>
+                {DBdata?.map((data,ref) => (
+                    <tr key={ref}>                   
+                      <td>{data.reference}</td>
+                      <td>{data.reason}</td>
+                      <td>{data.type}</td>
+                      <td>{data.amount}</td>
+                      <td>
+                        <IonButtons slot="end">
+                          <IonButton size="small" onClick={() => doEditItem(data)}>
+                          <IonIcon icon={hammerOutline}></IonIcon>
+                          </IonButton>
+                          <IonButton size="small" color={"light"} onClick={() => confirmDelete(data.reference)}>
+                            <IonIcon icon={trashBinOutline} color={"danger"}></IonIcon>
+                          </IonButton>
+                        </IonButtons>
+                      </td>
+                    </tr>
+                  ))}
+                  {ConfirmationAlert}
+                </tbody>
+              </table>
 
-                {DBdata?.map((data) => (
-                <IonItem key={data.ref}>
-                    <IonLabel className="ion-text-wrap">{data.reason}</IonLabel>
-                    <IonButton onClick={() => doEditItem(data)}>EDIT</IonButton>
-                    <IonButton onClick={() => confirmDelete(data.ref)}>DELETE</IonButton>
-                </IonItem>
-                ))}
                 <IonButton expand="block" routerLink='/' className='ion-margin-top' type='button' color={"secondary"}>Home</IonButton>
             </IonContent>
+            <IonFooter>
+              <IonToolbar color={"tertiary"}><center>Reach me nishshanka123@gmail.com</center></IonToolbar>
+            </IonFooter>
         </IonPage>
     );
 };

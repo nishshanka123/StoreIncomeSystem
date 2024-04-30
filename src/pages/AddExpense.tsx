@@ -178,74 +178,6 @@ const AddExpense: React.FC = () => {
     }
   };
 
-  /*return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle className="IonTitle">Add New Store Expense</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-                    
-      <form onSubmit={addItem}>
-        <IonInput 
-          className="ion-margin-top" 
-          fill='outline' 
-          labelPlacement='floating' 
-          label='Expense Name' 
-          type='text' 
-          value={inputName} 
-          onIonChange={(e) => setInputName(e.detail.value!)} 
-          required
-        ></IonInput>
-        <IonInput 
-          className="ion-margin-top" 
-          fill='outline' 
-          labelPlacement='floating' 
-          label='Reason' 
-          value={inputReason} 
-          onIonChange={(e) => setInputReason(e.detail.value!)} 
-          required
-        ></IonInput>
-        <IonSelect 
-          className="ion-margin-top" 
-          fill='outline' 
-          labelPlacement='floating' 
-          label='Type'
-          value={inputType} 
-          onIonChange={(e) => setInputType(e.detail.value)}
-          required>
-          <IonSelectOption value={"type1"}>Buy Stock</IonSelectOption>
-          <IonSelectOption value={"type2"}>Salary Payment</IonSelectOption>
-          <IonSelectOption value={"type3"}>Loan Repayment</IonSelectOption>
-        </IonSelect>
-        <IonInput 
-          className="ion-margin-top" 
-          fill='outline' 
-          labelPlacement='floating' 
-          label='Amount' 
-          type='number' 
-          value={inputAmount} 
-          onIonChange={(e) => setInputAmount(e.detail.value!)} 
-          required
-        ></IonInput>
-        <IonInput 
-          className="ion-margin-top" 
-          fill='outline' 
-          labelPlacement='floating' 
-          label='Receipt' 
-          type='text' 
-          value={inputReceipt} 
-          onIonChange={(e) => setInputReceipt(e.detail.value!)}
-        ></IonInput>
-        <IonButton expand="block" className='ion-margin-top' type='submit'>Add</IonButton>
-        <IonButton expand="block" className='ion-margin-top' type='reset'>Clear</IonButton>
-        <IonButton expand="block" routerLink='/expensemanage' className='ion-margin-top' type='button' color={"secondary"}>Add New Expense</IonButton>
-      </form>
-      </IonContent>
-    </IonPage>
-  );*/
-
   return (
     <IonPage>
       <IonHeader>
@@ -259,7 +191,7 @@ const AddExpense: React.FC = () => {
               className="ion-margin-top" 
               fill='outline' 
               labelPlacement='floating' 
-              label='Expense Name' 
+              label='Reference Number' 
               type='text' 
               value={inputName} 
               onIonInput={(e) => setInputName(e.detail.value!)} 
@@ -279,9 +211,9 @@ const AddExpense: React.FC = () => {
               label='Type'
               value={inputType} 
               onIonChange={(e) => setInputType(e.detail.value)}>
-              <IonSelectOption value={"type1"}>Buy Stock</IonSelectOption>
-              <IonSelectOption value={"type2"}>Salary Payment</IonSelectOption>
-              <IonSelectOption value={"type3"}>Loan Repayment</IonSelectOption>
+              <IonSelectOption value={"Buy Stock"}>Buy Stock</IonSelectOption>
+              <IonSelectOption value={"Salary Payment"}>Salary Payment</IonSelectOption>
+              <IonSelectOption value={"Loan Repayment"}>Loan Repayment</IonSelectOption>
             </IonSelect>
             <IonInput 
               className="ion-margin-top" 
@@ -302,14 +234,14 @@ const AddExpense: React.FC = () => {
               onIonInput={(e) => setInputReceipt(e.detail.value!)} ></IonInput>
             <IonButton expand="block" className='ion-margin-top' onClick={addItem} >Add</IonButton>
             <IonButton expand="block" className='ion-margin-top' type='reset'>Clear</IonButton>
-            <IonButton expand="block" routerLink='/ViewExpense' className='ion-margin-top' type='button' color={"secondary"}>View Expenses</IonButton>
+            <IonButton expand="block" routerLink='/viewexpenses' className='ion-margin-top' type='button' color={"secondary"}>View Expenses</IonButton>
             <IonButton expand="block" routerLink='/' className='ion-margin-top' type='button' color={"secondary"}>Home</IonButton>
         </form>
 
         {ConfirmationAlert}
       </IonContent>
       <IonFooter>
-        <IonToolbar color={"tertiary"}>&nbsp;Keeping touch with nishshanka123@gmail.com</IonToolbar>
+      <IonToolbar color={"tertiary"}><center>Reach me nishshanka123@gmail.com</center></IonToolbar>
       </IonFooter>
     </IonPage>
   );
